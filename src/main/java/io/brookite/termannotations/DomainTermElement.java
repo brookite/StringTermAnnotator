@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.brookite.termannotations.utils.DetectionMethodDeserializer;
 import io.brookite.termannotations.utils.ManyLocalizedObjectDeserializer;
 import io.brookite.termannotations.utils.SingleLocalizedObjectDeserializer;
+import io.brookite.termannotations.utils.StringUtils;
 import lombok.Getter;
 
 
@@ -32,7 +33,7 @@ public class DomainTermElement {
         if (pattern.size() == 1) {
             return pattern.values().iterator().next();
         }
-        return pattern.get(lang.toString());
+        return pattern.get(StringUtils.upperLangTag(lang));
     }
 
     public boolean isMalformed() {
@@ -40,13 +41,13 @@ public class DomainTermElement {
     }
 
     public boolean isMalformed(Locale lang) {
-        return !pattern.containsKey(lang.toString()) || !pattern.containsKey(lang.toString());
+        return !pattern.containsKey(StringUtils.upperLangTag(lang)) || !pattern.containsKey(StringUtils.upperLangTag(lang));
     }
 
     public String getExplanation(Locale lang) {
         if (explanations.size() == 1) {
             return explanations.values().iterator().next();
         }
-        return explanations.get(lang.toString());
+        return explanations.get(StringUtils.upperLangTag(lang));
     }
 }
