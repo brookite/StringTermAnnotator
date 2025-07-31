@@ -8,6 +8,6 @@ public class StringUtils {
     }
 
     public static String upperLangTag(Locale locale) {
-        return !locale.toString().contains("_") ? locale.toString().toUpperCase() : locale.toString();
+        return locale.getLanguage().toUpperCase();
     }
 }
